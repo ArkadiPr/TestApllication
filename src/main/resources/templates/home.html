@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Пройдите тестирование</title>
+</head>
+<body>
+<h1>Добро пожаловать!</h1>
+
+<p>Нажмите <a th:href="@{/textQuestions}" >сюда</a> , чтобы добавить вопросы.</p>
+<div>
+<form  method="post">
+    <input type="submit" value="Нажмите сюда, чтоб пройти тест." size="40" style = "border: none;background: white; text-decoration: underline" >
+</form>
+</div>
+<div>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
+</div>
+</body>
+</html>

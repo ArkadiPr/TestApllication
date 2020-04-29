@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Список вопросов</title>
+</head>
+<body>
+<h1 th:text="'Добавьте вопросы'">List of questions</h1>
+<table>
+    <thead>
+    <tr>
+        <th> Текст </th>
+        <th> Ответ </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="question : ${allquestions}">
+        <td><span th:text="${question.text}" th:size="100"> Текст </span></td>
+        <td><span th:text="${question.rightAnswer}"> Ответ </span></td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <form method="post">
+        <input type="text" name="text" size="100" placeholder="Введите текст вопроса">
+        <input type="text" name="rightAnswer" placeholder="Введите правильный ответ">
+        <button type="submit">Добавить</button>
+    </form>
+</div>
+<p><a th:href="@{/home}">Назад</a> </p>
+</body>
+</html>

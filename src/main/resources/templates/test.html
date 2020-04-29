@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Пройдите тест</title>
+</head>
+<body>
+
+<h1 th:text="'Ответьте на вопросы'">List of questions</h1>
+<div>
+<tbody>
+
+<tr th:each="question: ${allQuestions}">
+    <form method="post" th:object="${question}"  >
+    <td><span th:text="${question.getKey().getText()}"  th:size="100"> Text </span></td>
+    <td> <span><input type="text" name="answer" th:placeholder="${question.getValue()}"></span></td>
+        <td><span><input type="hidden" name="questionID"th:value="${question.getKey().getQuestionId()}"></span></td>
+    <button type="submit" name="action" id="answerQuestion">Ответить</button>
+    </form>
+
+</tr>
+</tbody>
+
+    <form method="post" >
+
+    <button type="submit" name="action" value="finishTest">Завершить</button>
+        <input type="hidden" name="answer" >
+        <input type="hidden" name="questionID"  >
+    </form>
+</div>
+</body>
+</html>

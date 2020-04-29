@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+</head>
+<body>
+
+<p th:text=" 'Пользователь : ' + ${UserName}"></p>
+<p th:text="'Результат : ' + ${result} + '%'"></p>
+<p th:text="'Общее количество пользователей : ' + ${usersCount}"></p>
+<p th:text="'Процент пользователей прошедших тест лучше или так же : ' + ${numberOfUsersBetter}"></p>
+<p th:text="'Количество пользователей прошедших тест : ' + ${userTestedCount}"></p>
+<p th:text="'Процент пользователейпрошедших тест хуже  : ' + ${numberOfUsersLess}"></p>
+
+<h2>Ваши ответ</h2>
+<table>
+    <thead>
+    <tr>
+        <th> Текст Вопроса</th>
+        <th> Ответ </th>
+        <th>Статус</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="userAnswerquestion : ${userAnswersQuestions}">
+        <td><span th:text="${userAnswerquestion.getKey().getText()}" th:size="100"> Текст </span></td>
+        <td><span th:text="${userAnswerquestion.getValue().getAnswer()}"> Ответ </span></td>
+        <td><span th:text="${userAnswerquestion.getValue().getAnswerStatus()}"> Статус </span></td>
+    </tr>
+    </tbody>
+</table>
+
+
+<form method="post">
+    <button type="submit">Вернуться на главную страницу</button>
+</form>
+
+</body>
+</html>

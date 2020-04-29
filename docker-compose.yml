@@ -1,0 +1,7 @@
+version: '2.3'
+services:
+  tester-app:
+    image: arkady94/tester-app:latest
+    command: mvn spring-boot:run
+    ports:
+      - 8080:8080
