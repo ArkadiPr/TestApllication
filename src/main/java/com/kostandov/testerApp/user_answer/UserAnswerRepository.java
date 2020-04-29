@@ -27,17 +27,15 @@ public interface UserAnswerRepository extends CrudRepository<UserAnswer,Long> {
 
     @Query("SELECT count(*) FROM( " +
             "    SELECT user_id FROM user_answers ua " +
-            "    WHERE answer_status = 'RIGHT' " +
             "    GROUP BY user_id " +
-            "    HAVING count(user_answer_id) >= " +
+            "    HAVING count(CASE answer_status WHEN 'RIGHT' THEN 1 ELSE NULL END) >= " +
             "        (SELECT count(user_id) FROM user_answers WHERE user_id = :userId AND answer_status = 'RIGHT')) a")
     long countOfUsersWithMoreRightAnswers(@Param("userId") long userId);
 
     @Query("SELECT count(*) FROM( " +
             "    SELECT user_id FROM user_answers ua " +
-            "    WHERE answer_status = 'RIGHT' " +
             "    GROUP BY user_id " +
-            "    HAVING count(user_answer_id) < " +
+            "    HAVING count(CASE answer_status WHEN 'RIGHT' THEN 1 ELSE NULL END) < " +
             "        (SELECT count(user_id) FROM user_answers WHERE user_id = :userId AND answer_status = 'RIGHT')) a")
     long countOfUsersWithLessRightAnswers(@Param("userId") long userId);
 
